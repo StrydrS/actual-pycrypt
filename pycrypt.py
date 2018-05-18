@@ -47,7 +47,19 @@ def readFile():
     return newVar
     
     
+def decryptMessage(createdArray, newArray):
+    
+    decryptedMessage = ""
+    allChars = string.printable
+    
+    for m in range(0, len(createdArray)):                 
+        for q in range(0, len(newArray)):
+            if(newArray[q] == createdArray[m]):
+                decryptedMessage = decryptedMessage + allChars[q]
                 
+    return decryptedMessage
+                    
+
 def main():
     userChoice = str(input("Do you want to encrypt or decrypt?"))
     
@@ -65,30 +77,27 @@ def main():
         encryptedMessage = readFile()
         allChars = string.printable
         allNums = string.digits
-        newString = ""
+        
+        sortToNums = ""
         
         for x in encryptedMessage:
             for i in range(0, len(allNums)):
                 if(x == allNums[i]):
-                    newString = newString + x
+                    sortToNums = sortToNums + x
         
-        lenNewArray = len(newString) // 5
+        lenDecryptArray = len(sortToNums) // 5
         
-        reallyNewArray = [0] * lenNewArray
+        decryptArray = [0] * lenDecryptArray
         
-        newVal = 5
-        newNewVal = 0
-        for z in range(0, lenNewArray):
-            reallyNewArray[z] = int(newString[newNewVal:newVal])
-            newVal = newVal + 5
-            newNewVal = newNewVal + 5
+        updateMax = 5
+        updateMin = 0
         
-        decryptedMessage = ""
-        for m in range(0, len(reallyNewArray)):                 
-            for q in range(0, len(newArray)):
-                if(newArray[q] == reallyNewArray[m]):
-                    decryptedMessage = decryptedMessage + allChars[q]
-        print(decryptedMessage)
+        for z in range(0, lenDecryptArray):
+            decryptArray[z] = int(sortToNums[updateMin:updateMax])
+            updateMin = updateMin + 5
+            updateMax = updateMax + 5
+        
+        print(decryptMessage(decryptArray, newArray))
                 
                     
 main()
