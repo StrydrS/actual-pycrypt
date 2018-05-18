@@ -63,6 +63,7 @@ def main():
         
     elif(userChoice == "decrypt"):
         encryptedMessage = readFile()
+        allChars = string.printable
         allNums = string.digits
         newString = ""
         
@@ -81,10 +82,13 @@ def main():
             reallyNewArray[z] = int(newString[newNewVal:newVal])
             newVal = newVal + 5
             newNewVal = newNewVal + 5
-
-            
-        print(reallyNewArray)
         
+        decryptedMessage = ""
+        for m in range(0, len(reallyNewArray)):                 
+            for q in range(0, len(newArray)):
+                if(newArray[q] == reallyNewArray[m]):
+                    decryptedMessage = decryptedMessage + allChars[q]
+        print(decryptedMessage)
                 
                     
 main()
